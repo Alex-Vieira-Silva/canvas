@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Untitled 2</title>
+
+<script type="text/javascript">
+
+	var x_personagem = 0;
+	
+	function carregar(){
+	
+		var tecla=window.event.keyCode;
+		
+		if(tecla == 39){
+			x_personagem = x_personagem + 5;
+		}
+		
+		if(tecla ==37){
+			x_personagem = x_personagem - 5;
+		}
+
+		
+		var elemento = document.getElementById('game');
+  		var context = elemento.getContext('2d');
+		
+		/*var img = new Image();
+        img.onload = function(){
+            context.drawImage(img, 0, 0, 500,400);
+        }
+        img.src = 'fundo.jpg';
+        */
+        
+        context.fillStyle = '#FFFFFF';
+        context.fillRect(0,0, 500, 400);
+        
+        context.fillStyle = 'green';
+        context.fillRect(0,370, 500, 30);
+        
+        var img2 = new Image();
+        img2.onload = function(){
+            context.drawImage(img2, x_personagem, 320, 30,50);
+        }
+        img2.src = 'luigi.jpg';
+	}
+</script>
+</head>
+
+<body onload="carregar();" onkeydown="carregar()">
+	<canvas id="game" width="500" height="400"></canvas>
+</body>
+
+</html>

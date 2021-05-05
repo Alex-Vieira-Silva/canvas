@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Untitled 2</title>
+
+<script type="text/javascript">
+
+	var x_personagem = 0;
+	var y_personagem = 310;
+	var fundo = 'fundo.jpg';
+	function cenario(){
+	
+		var elemento = document.getElementById('game');
+  		var context = elemento.getContext('2d');
+		
+		var img = new Image();
+        img.onload = function(){
+            context.drawImage(img, 0, 0, 700,400);
+        }
+        img.src = fundo;
+        
+        var img2 = new Image();
+        img2.onload = function(){
+            context.drawImage(img2, x_personagem, y_personagem);
+        }
+        img2.src = 'luigi.jpg'; 
+	}
+	
+function mover(){
+	var tecla=window.event.keyCode;
+	
+	// Regra Pular
+	if( (x_personagem == 165) && (y_personagem == 310)){
+		// Pular
+		if(tecla == 38){
+			y_personagem = y_personagem - 150;
+			cenario();
+		}
+		
+		return false;
+	}
+	
+	// Regra Pular Bixo
+	if((x_personagem == 350)){
+		if(tecla == 38){
+			y_personagem = y_personagem - 40;
+			x_personagem = x_personagem + 35;
+			cenario();
+		}
+		
+		return false;
+	}
+	
+	// Se tiver pulando
+	if(y_personagem == 160){
+		y_personagem = 310;
+		x_personagem = x_personagem + 130;
+		cenario();
+
+	}
+	
+	// Se tiver pulando
+	if(y_personagem == 270){
+		fundo = 'fundo2.jpg';
+		y_personagem = 310;
+		x_personagem = x_personagem + 50;
+		cenario();
+	}
+
+	
+	
+	if(tecla == 37){
+		x_personagem = x_personagem - 5;
+		cenario();
+	}
+	
+	if(tecla == 39){
+		x_personagem = x_personagem + 5;
+		cenario();
+	}
+
+}	
+
+alert("Exemplo simples em canvas para usar teclas para mover o personagem << >>!");
+</script>
+</head>
+
+<body onload="cenario();" onkeydown="mover();">
+	<canvas id="game" width="700" height="400">
+	</canvas>
+
+Exemplo simples desenvolvido em aula, no centro de treinamentos RL System
+</body>
+
+</html>

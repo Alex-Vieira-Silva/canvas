@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Untitled 1</title>
+<script type="text/javascript">
+var x = 25;
+var y = 25;
+var parado = true;
+
+function iniciar(){
+	var elemento = document.getElementById('exemplo');
+
+  var context = elemento.getContext('2d');
+ 
+
+	
+  // Tabuleiro
+  for(var e = 0; e < 8; e++){
+	  for(var i = 0; i < 8; i++){
+	  			var cor;
+	  			
+	  			if(i % 2 == 0)
+	  				cor = "#CDB79E";
+	  			else
+	  				cor = "#000000";	
+	  				
+	  			if(e % 2 == 0){
+	  				if(i % 2 == 0)
+	  					cor = "#000000";
+	  			else
+	  					cor = "#CDB79E";	
+	  			}	
+	
+	  				
+	  				
+	  			context.fillStyle   = cor;
+				context.fillRect  (e*50, i*50, 50, 50);
+		}
+			
+	}
+	
+	 // Amigo
+	  context.beginPath();
+    context.arc(x, y, 15, 0, 2 * Math.PI, false);
+    context.fillStyle = "#1874CD";
+    context.fill();	 
+    
+    // Inimigo
+    context.beginPath();
+    context.arc(375, 375, 15, 0, 2 * Math.PI, false);
+    context.fillStyle = "#EE2C2C";
+    context.fill();	 
+}
+
+
+function mouse(event)
+{
+  x=event.clientX;
+  y=event.clientY;
+  if(parado == true){
+  		iniciar();
+  	}	
+}
+
+function click(){
+	parado = false;
+}
+
+</script>
+</head>
+
+<body onmousemove="mouse(event)" onmousedown="click();">
+<canvas id="exemplo" width="400" height="400" onclick="jogar(x, y)"></canvas>
+</body>
+
+</html>
+
